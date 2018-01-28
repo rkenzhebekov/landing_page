@@ -19,3 +19,12 @@ import "phoenix_html"
 // paths "./socket" or full ones "web/static/js/socket".
 
 // import socket from "./socket"
+//
+
+import Elm from './elm/main';
+
+const elmContainer = document.querySelector('#form_container');
+
+if (elmContainer) {
+  const app = Elm.Main.embed(elmContainer);
+}
