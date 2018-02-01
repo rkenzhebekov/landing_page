@@ -7,7 +7,11 @@ use Mix.Config
 
 # General application configuration
 config :landing_page,
-  ecto_repos: [LandingPage.Repo]
+  ecto_repos: [LandingPage.Repo],
+  google_recaptcha: [
+    secret_key: "SECRET_KEY",
+    client: LandingPage.Clients.GoogleRecaptchaHttp
+  ]
 
 # Configures the endpoint
 config :landing_page, LandingPageWeb.Endpoint,

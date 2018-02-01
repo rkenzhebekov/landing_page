@@ -9,3 +9,4 @@ type Msg
   | HandleEmailInput String
   | HandleFormSubmit
   | SubscribeResponse (Result Http.Error Bool)
+  | SetRecaptchaToken String

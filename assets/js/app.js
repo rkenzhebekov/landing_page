@@ -23,8 +23,25 @@ import "phoenix_html"
 
 import Elm from './elm/main';
 
-const elmContainer = document.querySelector('#form_container');
+window.onloadCallback = () => {
+  const formContainer = document.querySelector('#form_container');
 
-if (elmContainer) {
-  const app = Elm.Main.embed(elmContainer);
-}
+  if (formContainer) {
+    const app = Elm.Main.embed(formContainer);
+    let recaptcha;
+
+    app.ports.initRecaptcha.subscribe(id => {
+      window.requestAnimationFrame(() => {
+        recaptcha = grecaptcha.render(id, {
+          sitekey: '6Ldt70IUAAAAAIdf9olMk6eQvPLJHWvTcXwFcCuT',
+          callback: app.ports.setRecaptchaToken.send,
+        });
+      });
+    });
+
+    app.ports.resetRecaptcha.subscribe(() => {
+      grecaptcha.reset(recaptcha);
+    });
+  }
+};
+

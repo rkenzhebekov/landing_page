@@ -35,7 +35,7 @@ formView subscribeForm =
   let
     validationErrors = extractValidationErrors subscribeForm
 
-    { fullName, email } =
+    { fullName, email, recaptchaToken } =
       extractFormFields subscribeForm
 
     saving =
@@ -53,7 +53,16 @@ formView subscribeForm =
          False
 
     buttonDisabled =
-      fullName == "" || email == "" || saving || invalid
+      fullName
+          == ""
+          || email
+          == ""
+          || recaptchaToken
+          == Nothing
+          || recaptchaToken
+          == Just ""
+          || saving
+          || invalid
   in
     Html.div
       [ Html.class "content" ]
@@ -124,6 +133,13 @@ formView subscribeForm =
                           [ Html.text "Subscribe me" ]
                       ]
                   ]
+              ]
+          , Html.div
+              [ Html.class "field" ]
+              [ Html.div
+                  [ Html.id "recaptcha" ]
+                  []
+              , validationErrorView "recaptcha_token" validationErrors
               ]
           ]
       ]

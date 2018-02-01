@@ -5,6 +5,7 @@ import Dict exposing (Dict)
 type alias FormFields =
   { fullName : String
   , email : String
+  , recaptchaToken : Maybe String
   }
 
 type alias ValidationErrors =
@@ -42,6 +43,7 @@ emptyFormFields : FormFields
 emptyFormFields =
     { fullName = ""
     , email = ""
+    , recaptchaToken = Nothing
     }
 
 extractValidationErrors : SubscribeForm -> ValidationErrors

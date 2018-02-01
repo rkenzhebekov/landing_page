@@ -1,5 +1,6 @@
 module Main exposing (main)
 
+import Ports
 import Html exposing (Html)
 
 import Messages exposing (Msg(..))
@@ -19,8 +20,8 @@ main =
 
 init : ( Model, Cmd Msg )
 init =
-    initialModel ! []
+    initialModel ! [ Ports.initRecaptcha "recaptcha" ]
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
-    Sub.none
+    Ports.setRecaptchaToken SetRecaptchaToken
