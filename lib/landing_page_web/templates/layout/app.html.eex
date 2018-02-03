@@ -15,6 +15,9 @@
 
   <body class="landing-page">
     <%= render(@view_module, @view_template, assigns) %>
+    <script>
+      var GRECAPTCHA_SITE_KEY = '<%= Application.get_env(:landing_page, :google_recaptcha)[:site_key] %>';
+    </script>
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
     <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
   </body>

@@ -23,6 +23,7 @@ import "phoenix_html"
 
 import Elm from './elm/main';
 
+
 window.onloadCallback = () => {
   const formContainer = document.querySelector('#form_container');
 
@@ -33,7 +34,7 @@ window.onloadCallback = () => {
     app.ports.initRecaptcha.subscribe(id => {
       window.requestAnimationFrame(() => {
         recaptcha = grecaptcha.render(id, {
-          sitekey: '6Ldt70IUAAAAAIdf9olMk6eQvPLJHWvTcXwFcCuT',
+          sitekey: GRECAPTCHA_SITE_KEY,
           callback: app.ports.setRecaptchaToken.send,
         });
       });

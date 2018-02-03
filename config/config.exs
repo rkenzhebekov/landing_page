@@ -9,7 +9,8 @@ use Mix.Config
 config :landing_page,
   ecto_repos: [LandingPage.Repo],
   google_recaptcha: [
-    secret_key: "SECRET_KEY",
+    secret_key: System.get_env("GRECAPTCHA_SECRET_KEY") || "SECRET_KEY",
+    site_key: System.get_env("GRECAPTCHA_SITE_KEY") || "SITE_KEY",
     client: LandingPage.Clients.GoogleRecaptchaHttp
   ]
 
